@@ -27,27 +27,26 @@ import RxSwift
  # of
  */
 
+// Just 연산자와 마찬가지로 배열이 그대로 방출 됩니다.
+
 let disposeBag = DisposeBag()
 let apple = "🍏"
 let orange = "🍊"
 let kiwi = "🥝"
 
-Observable.of(apple, orange, kiwi)
-   .subscribe { element in print(element) }
+Observable.of(apple, orange, kiwi) // <- 여러개의 값을 동시에 전달할 수 있음.
+   .subscribe { element in print("\(element)") }
    .disposed(by: disposeBag)
 
 Observable.of([1, 2], [3, 4], [5, 6])
-   .subscribe { element in print(element) }
-   .disposed(by: disposeBag)
+    .subscribe { element in print(element) }
+    .disposed(by: disposeBag)
 
-
-
-
-
-
-
-
-
-
-
-
+// next(🍏)
+// next(🍊)
+// next(🥝)
+// completed
+// next([1, 2])
+// next([3, 4])
+// next([5, 6])
+// completed

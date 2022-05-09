@@ -27,6 +27,8 @@ import RxSwift
  # from
  */
 
+// from - 배열에 저장된 요소들을 '하나씩' 방출할때 사용
+
 let disposeBag = DisposeBag()
 let fruits = ["🍏", "🍎", "🍋", "🍓", "🍇"]
 
@@ -34,17 +36,9 @@ Observable.from(fruits)
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// next(🍏)
+// next(🍎)
+// next(🍋)
+// next(🍓)
+// next(🍇)
+// completed
