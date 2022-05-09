@@ -27,7 +27,20 @@ import RxSwift
  # Observables
  */
 
+// Observable 을 생성하는 방법 2가지
 
+// #1 - create
+Observable<Int>.create { (observer) -> Disposable in
+    observer.on(.next(0))
+    observer.onNext(1)
+    
+    observer.onCompleted() // observable 종료
+    
+    return Disposables.create()
+}
+
+// #2 - from
+Observable.from([0, 1]) // 순서대로 방출될때는 from을 사용
 
 
 
