@@ -33,4 +33,23 @@ let disposeBag = DisposeBag()
 enum MyError: Error {
    case error
 }
+// subject는 Observable 이며, 다른 Observer가 구독할 수 있습니다.
+let subject = PublishSubject<String>()  // 문자열이 포함된 next 이벤트를 받아서 다른 Observer에게 전달할 수 있습니다.
 
+subject.onNext("Hello") // <- 구독(subscribe)을 하지않아서 호출 되지않음.
+
+let o1 = subject.subscribe { print(">> 1", $0) }
+o1.disposed(by: disposeBag)
+
+subject.onNext("RxSwift")
+
+let o2 = subject.subscribe { print(">> 2", $0) }
+o2.disposed(by: disposeBag)
+
+subject.onNext("Subject")
+
+//subject.onCompleted()
+subject.onError(MyError.error)
+
+let o3 = subject.subscribe { print(">> 3", $0) }
+o3.disposed(by: disposeBag)
