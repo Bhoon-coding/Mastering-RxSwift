@@ -30,6 +30,8 @@ import RxSwift
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
-
+Observable.from(numbers) // <- from 연산자를 이용해 하나씩 방출
+    .filter { $0.isMultiple(of: 2) } // (of: 숫자) 만큼의 배수들만 걸러냄
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
 
