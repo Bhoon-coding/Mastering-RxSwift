@@ -39,8 +39,9 @@ Observable.of(apple, orange, kiwi) // <- 여러개의 값을 동시에 전달할
    .disposed(by: disposeBag)
 
 Observable.of([1, 2], [3, 4], [5, 6])
-    .subscribe { element in print(element) }
-    .disposed(by: disposeBag)
+    
+//    .subscribe { element in print(element) }
+//    .disposed(by: disposeBag)
 
 // next(🍏)
 // next(🍊)
