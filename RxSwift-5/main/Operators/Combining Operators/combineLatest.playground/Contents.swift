@@ -36,4 +36,19 @@ enum MyError: Error {
 let greetings = PublishSubject<String>()
 let languages = PublishSubject<String>()
 
+Observable.combineLatest(greetings, languages) { lhs, rhs -> String in
+    return "\(lhs) \(rhs)"
+}
+.subscribe { print($0) }
+.disposed(by: bag)
+greetings.onNext("Hi")
+languages.onNext("World!")
 
+greetings.onNext("Hello")
+languages.onNext("RxSwift")
+
+//greetings.onCompleted()
+greetings.onError(MyError.error) // error가 전달되면, 즉시 이벤트가 종료됩니다.
+languages.onNext("SwiftUI")
+
+languages.onCompleted() // 모든 Observable이 completed를 전달하면 이 시점에 completed 이벤트가 전달됩니다.
